@@ -1,7 +1,7 @@
 Geth
 #########################################################################
 /* Вход к удаленному серверу */
---dev --rpc --rpcaddr "0.0.0.0" --rpcapi "admin, debug, shh, txpool, personal, eth, net, web3" console
+geth --dev --rpc --rpcaddr "0.0.0.0" --rpcapi "admin, debug, shh, txpool, personal, eth, net, web3" console
 /*Создание аккаунта с паролем (123) */
 personal.newAccount("123")
 /*Список аккаунтов*/
