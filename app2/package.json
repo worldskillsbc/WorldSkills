@@ -1,0 +1,19 @@
+{
+  "name": "worldskills",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ganache-cli": "^6.4.3",
+    "geth": "^0.4.0",
+    "mocha": "^6.1.4",
+    "solc": "^0.4.25",
+    "truffle-hdwallet-provider": "0.0.3",
+    "web3": "^1.0.0-beta.37"
+  }
+}
