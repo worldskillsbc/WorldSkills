@@ -1,0 +1,13 @@
+Geth
+#########################################################################
+/* Вход к удаленному серверу */
+geth --dev --rpc --rpcaddr "0.0.0.0" --rpcapi "admin, debug, shh, txpool, personal, eth, net, web3" console
+/*Создание аккаунта с паролем (123) */
+personal.newAccount("123")
+/*Список аккаунтов*/
+eth.accounts
+
+Mist
+##########################################################################
+/*Запуск Mist*/
+cd C:\Program Files\Mist\mist.exe --rpc http://localhost:8545

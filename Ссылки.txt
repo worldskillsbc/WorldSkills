@@ -1,3 +1,3 @@
-https://geth.ethereum.org/downloads/ - Geth установщики
+https://geth.ethereum.org/downloads/ - Geth установщики (Geth 1.8.23 64 bit Installer)
 
 https://github.com/ethereum/mist/releases - Mist установщики (Mist Installer.exe)
