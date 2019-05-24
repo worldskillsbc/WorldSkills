@@ -10,4 +10,5 @@ eth.accounts
 Mist
 ##########################################################################
 /*Запуск Mist*/
-cd C:\Program Files\Mist\mist.exe --rpc http://localhost:8545
+cd C:\Program Files\Mist\
+mist.exe --rpc http://localhost:8545
