@@ -1,0 +1,17 @@
+*****создание проекта, установка компонентов*****
+общие:
+npm install --global --production windows-build-tools
+
+в проекте:
+npm init
+npm uninstall solc
+npm install --save solc@0.4.25
+npm install --save mocha ganache-cli web3@1.0.0-beta.35
+npm install --save truffle-hdwallet-provider@0.0.3
+
+запуск js файлов
+node compile.js
+
+
+*****ошибки*****
+Error: Cannot find module './build/Release/scrypt' - изменить в node_modules/scrypt значение в index.js на 'scrypt'
