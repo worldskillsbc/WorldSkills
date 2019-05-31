@@ -1,4 +1,4 @@
-Geth
+﻿Geth
 #########################################################################
 /* Вход к удаленному серверу */
 geth --dev --rpc --rpcaddr "0.0.0.0" --rpcapi "admin, debug, shh, txpool, personal, eth, net, web3" console
@@ -19,7 +19,7 @@ geth --datadir "C:\Users\student\Desktop\WorldSkills\WorldSkills\app2\data-priva
 
 Создание аккаунта:
 
-geth --networkid 13 --port 60303 --rpc --lightkdf --cache 16 --datadir "C:\Users\student\Desktop\WorldSkills\WorldSkills\app2\data-private" console
+geth --networkid 13 --port 60303 --rpc --lightkdf --cache 16 --rpcaddr 10.150.5.125  --datadir "C:\Users\student\Desktop\WorldSkills\WorldSkills\app2\data-private" console
 
 
 geth --identity nodeSOL --nodiscover --networkid 13 --port 60303 --maxpeers 10 --lightkdf --cache 16  --rpc --rpccorsdomain "*" --datadir "C:\Users\student\Desktop\WorldSkills\WorldSkills\app2\data-private" --minerthreads 1  --mine
