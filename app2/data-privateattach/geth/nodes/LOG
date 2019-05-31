@@ -1,0 +1,20 @@
+=============== May 31, 2019 (MSK) ===============
+14:36:06.126815 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+14:36:06.186301 db@open opening
+14:36:06.192303 version@stat F·[] S·0B[] Sc·[]
+14:36:06.219369 db@janitor F·2 G·0
+14:36:06.219369 db@open done T·33.0676ms
+14:36:06.256377 db@close closing
+14:36:06.256377 db@close done T·0s
+=============== May 31, 2019 (MSK) ===============
+14:44:06.632380 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+14:44:06.634382 version@stat F·[] S·0B[] Sc·[]
+14:44:06.634382 db@open opening
+14:44:06.635382 journal@recovery F·1
+14:44:06.635382 journal@recovery recovering @1
+14:44:06.701397 memdb@flush created L0@2 N·2 S·180B "n:\b..seq,v2":"version,v1"
+14:44:06.702396 version@stat F·[1] S·180B[180B] Sc·[0.25]
+14:44:06.763411 db@janitor F·3 G·0
+14:44:06.763411 db@open done T·129.0293ms
+14:44:06.799418 db@close closing
+14:44:06.800419 db@close done T·1.0013ms
