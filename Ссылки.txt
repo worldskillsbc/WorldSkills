@@ -3,3 +3,5 @@
 https://github.com/ethereum/mist/releases - Mist установщики (Mist Installer.exe)
 
 https://medium.com/@solangegueiros/https-medium-com-solangegueiros-setting-up-ethereum-private-network-on-windows-a72ec59f2198 -- pivate eth network
+
+https://gethstore.blob.core.windows.net/builds/geth-windows-amd64-1.6.7-ab5646c5.exe -- geth 1.6.7
