@@ -20,5 +20,4 @@
     console.log('adress= ', result.options.address);
  };
 
-
 deploy();
