@@ -12,3 +12,7 @@ Mist
 /*Запуск Mist*/
 cd C:\Program Files\Mist\
 mist.exe --rpc http://localhost:8545
+
+
+
+geth --datadir "C:\Users\student\Desktop\WorldSkills\WorldSkills\app2\data-private" iniT "C:\Users\student\Desktop\WorldSkills\WorldSkills\app2\configs\genesis.json
