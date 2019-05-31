@@ -22,5 +22,8 @@ geth --datadir "C:\Users\student\Desktop\WorldSkills\WorldSkills\app2\data-priva
 geth --networkid 13 --port 60303 --rpc --lightkdf --cache 16 --datadir "C:\Users\student\Desktop\WorldSkills\WorldSkills\app2\data-private" console
 
 
+geth --identity nodeSOL --nodiscover --networkid 13 --port 60303 --maxpeers 10 --lightkdf --cache 16  --rpc --rpccorsdomain "*" --datadir "C:\Users\student\Desktop\WorldSkills\WorldSkills\app2\data-private" --minerthreads 1  --mine
+ 
+geth — ipcpath geth.ipc — datadir "C:\Users\student\Desktop\WorldSkills\WorldSkills\app2\data-private"attach
 
 geth --networkid 13 --port 60303 --rpc --rpcport 8545 --rpccorsdomain "*" --datadir "C:\Users\student\Desktop\WorldSkills\WorldSkills\app2\data-private" --minerthreads 1 --bootnodes "enode://ec01f082bb421a64c72adae5779c6a5d672de49537775bc9d3a1a9059342bb992fb1a1f3bb33f86eeec9f8f497c6d0ffac74137910eb09edb3687a572023a56e@82.199.101.228:60303"
