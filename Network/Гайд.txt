@@ -1,6 +1,6 @@
-geth --identity "Node1" --rpc --rpcport "8082" --rpccorsdomain "*" --datadir "C:\Users\student\Documents\WorldSkills\Network\ETH1" --ipcdisable --port "60303" --rpcapi "db,eth,net,web3" --networkid 1999 init C:\Users\student\Documents\WorldSkills\Network\Genesis.json
+geth --identity "Node1" --rpc --rpcport "8081" --rpccorsdomain "*" --datadir "C:\Users\student\Documents\WorldSkills\Network\ETH1" --ipcdisable --port "60301" --rpcapi "db,eth,net,web3" --networkid 1999 init C:\Users\student\Documents\WorldSkills\Network\Genesis.json
 
-geth --identity "Node2" --rpc --rpcport "8082" --rpccorsdomain "*" --datadir "C:\Users\student\Documents\WorldSkills\Network\ETH2" --ipcdisable --port "60303" --rpcapi "db,eth,net,web3" --networkid 1999 init C:\Users\student\Documents\WorldSkills\Network\Genesis.json
+geth --identity "Node2" --rpc --rpcport "8082" --rpccorsdomain "*" --datadir "C:\Users\student\Documents\WorldSkills\Network\ETH2" --ipcdisable --port "60302" --rpcapi "db,eth,net,web3" --networkid 1999 init C:\Users\student\Documents\WorldSkills\Network\Genesis.json
 
 geth --identity "Node1" --rpc --rpcport "8081" --rpccorsdomain "*" --datadir "C:\Users\student\Documents\WorldSkills\Network\ETH1" --ipcdisable --port "60301" --rpcapi "db,eth,net,web3"   --networkid 1999 console
 geth --identity "Node2" --rpc --rpcport "8082" --rpccorsdomain "*" --datadir "C:\Users\student\Documents\WorldSkills\Network\ETH2" --ipcdisable --port "60302" --rpcapi "db,eth,net,web3"   --networkid 1999 console
@@ -12,7 +12,3 @@ miner.setEtherbase(eth.accounts[0])
 miner.start()
 
 admin.nodeInfo.enode
-
-admin.addPeer("идентификатор узла")
-
-net.PeerCount
