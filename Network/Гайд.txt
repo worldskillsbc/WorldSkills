@@ -12,3 +12,7 @@ miner.setEtherbase(eth.accounts[0])
 miner.start()
 
 admin.nodeInfo.enode
+
+admin.addPeer("идентификатор узла")
+
+net.PeerCount
