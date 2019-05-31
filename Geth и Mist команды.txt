@@ -16,3 +16,7 @@ mist.exe --rpc http://localhost:8545
 
 
 geth --datadir "C:\Users\student\Desktop\WorldSkills\WorldSkills\app2\data-private" init "C:\Users\student\Desktop\WorldSkills\WorldSkills\app2\configs\genesis.json
+
+Создание аккаунта:
+
+geth --networkid 13 --port 60303 --rpc --lightkdf --cache 16 --datadir "C:\Users\student\Desktop\WorldSkills\WorldSkills\app2\data-private" console
