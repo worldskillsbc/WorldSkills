@@ -15,4 +15,4 @@ mist.exe --rpc http://localhost:8545
 
 
 
-geth --datadir "C:\Users\student\Desktop\WorldSkills\WorldSkills\app2\data-private" iniT "C:\Users\student\Desktop\WorldSkills\WorldSkills\app2\configs\genesis.json
+geth --datadir "C:\Users\student\Desktop\WorldSkills\WorldSkills\app2\data-private" init "C:\Users\student\Desktop\WorldSkills\WorldSkills\app2\configs\genesis.json
