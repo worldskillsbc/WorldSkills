@@ -9,3 +9,5 @@ const source = fs.readFileSync(contractPath,'utf8');
 
 module.exports =  solc.compile(source, 1).
   contracts[':Test'];
+
+console.log(44);

@@ -1,6 +1,6 @@
 contract Test{
   int test;
-  function Test(int l) public {
-    test = l;
+  function Test() public {
+    test = 1;
   }
 }
