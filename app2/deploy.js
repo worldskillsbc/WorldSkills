@@ -14,11 +14,10 @@
 
    console.log('attemping to deploy', accounts[0]);
 
-   const result = await new web3.eth.Contract(JSON.parse(interface))
-    .deploy({data : '0x' + bytecode})
-    .send({from : accounts[0]});
+    const result = await new web3.eth.Contract(JSON.parse(interface))
+     .deploy({ data: '0x' + bytecode}) // add 0x bytecode
+     .send({from: accounts[0]});
     console.log('adress= ', result.options.address);
  };
-
 
 deploy();
