@@ -2,6 +2,7 @@ const HDWalletProvider =  require('truffle-hdwallet-provider');
 const Web3 = require('web3');
 //const {interface, bytecode} = require('./compile');
 const compiledProperty = require('./build/Property.json');
+const compiledGiftOffer = require('./build/GiftOffer.json');
 
 
 const  provider  = new HDWalletProvider(
@@ -18,7 +19,14 @@ const deploy = async () =>{
     const result = await new web3.eth.Contract(JSON.parse(compiledProperty.interface))
      .deploy({ data: '0x' + compiledProperty.bytecode}) // add 0x bytecode
      .send({from: accounts[0]});
+    
     console.log('adress= ', result.options.address);
+
+    const res2 = await new web3.eth.Contract(JSON.parse(compiledGiftOffer.interface))
+    .deploy({data: '0x' + compiledGiftOffer.bytecode, arguments: [result.options.address, address[1]]})
+    .send({from: accounts[0]});
+    console.log('adress= ', res2.options.address);
+
 };
 
 deploy();
