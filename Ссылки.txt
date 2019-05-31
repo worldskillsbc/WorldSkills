@@ -1,3 +1,5 @@
-https://geth.ethereum.org/downloads/ - Geth установщики (Geth 1.8.23 64 bit Installer)
+﻿https://geth.ethereum.org/downloads/ - Geth установщики (Geth 1.8.23 64 bit Installer)
 
 https://github.com/ethereum/mist/releases - Mist установщики (Mist Installer.exe)
+
+https://medium.com/@solangegueiros/https-medium-com-solangegueiros-setting-up-ethereum-private-network-on-windows-a72ec59f2198 -- pivate eth network
