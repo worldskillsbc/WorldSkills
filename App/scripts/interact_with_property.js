@@ -11,19 +11,16 @@ const  provider = new HDWalletProvider(
   'https://rinkeby.infura.io/v3/5c73d426f5d94a5086f8c6d0e6ca9530'
 );
 const web3 = new Web3(provider);
+let abi = compiledProperty.interface;
+let bytecode = compiledProperty.bytecode;
 
-//let source = fs.readFileSync('')
-/*let abi = compiledContract.contracts['nameContract'].interface;
-let bytecode = compiledContract.contracts['nameContract'].bytecode;*/
-
-const InteractWithProp = async()=>{
+const InteractWithProp = async(test_value)=>{
 	var abi = compiledProperty.interface;
 	var bytecode = compiledProperty.bytecode;
 	// var gasEstimate = web3.eth.estmateGas({data: bytecode});
 	// var propContract = web3.eth.contract(JSON.parse(abi));
 	var propContract = new web3.eth.Contract(JSON.parse(abi), '0xaC944BCE7dc5abe3999Ee3057581af26665deD93');
 	// console.log('contract: ', propContract);
-
 
 	const accounts = await web3.eth.getAccounts();
 
@@ -34,7 +31,7 @@ const InteractWithProp = async()=>{
 	});
 	// console.log('*************************************************************');
 	console.log(result);
-	var temp = await propContract.methods.SetTest(11)
+	var temp = await propContract.methods.SetTest(test_value)
 		.send({from: accounts[0]});
 	// console.log(temp);
 	var result = await propContract.methods.GetTest().call({
@@ -44,4 +41,4 @@ const InteractWithProp = async()=>{
 
 }
 
-InteractWithProp();
+InteractWithProp(4);

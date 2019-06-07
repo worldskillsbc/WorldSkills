@@ -2,9 +2,13 @@ https://habr.com/ru/post/344578/
 
 // 
 https://solidity.readthedocs.io/en/develop/abi-spec.html
+https://solidity.readthedocs.io/en/v0.4.24/contracts.html
 
 // array inside a struct
 https://medium.com/loom-network/ethereum-solidity-memory-vs-storage-how-to-initialize-an-array-inside-a-struct-184baf6aa2eb
 
 // JS-API etherium git
 https://github.com/ethereum/wiki/wiki/JavaScript-API#web3ethcontract
+
+// git udemy
+https://github.com/StephenGrider/EthereumCasts/tree/master/kickstart/ethereum
