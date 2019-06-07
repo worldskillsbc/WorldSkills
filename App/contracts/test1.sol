@@ -39,7 +39,10 @@ contract Property{
  	}
 
  	// конструткор
- 	function Property(){ owner = msg.sender; }
+ 	function Property(address _owner)
+ 	{ 
+ 		owner = _owner;
+ 	}
 
  	// Для взаимодействия с предложениями
  	function ChekOffer(Offer o) public{
