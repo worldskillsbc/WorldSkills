@@ -1,6 +1,10 @@
-const fs = require("fs");
-const solc = require("solc");
+/*const fs = require("fs");
+const solc = require("solc");*/
+const HDWalletProvider =  require('truffle-hdwallet-provider');
 const Web3 = require('web3');
+const compiledProperty = require('../build/Property.json');
+const compiledGiftOffer = require('../build/GiftOffer.json');
+
 
 const  provider = new HDWalletProvider(
   'quiz park fancy certain rail quality furnace enhance goat unlock advance figure',
@@ -9,12 +13,35 @@ const  provider = new HDWalletProvider(
 const web3 = new Web3(provider);
 
 //let source = fs.readFileSync('')
-let compiledProperty = require('./build/Property.json');
 /*let abi = compiledContract.contracts['nameContract'].interface;
 let bytecode = compiledContract.contracts['nameContract'].bytecode;*/
 
-let abi = compiledProperty.interface;
-let bytecode = compiledProperty.bytecode;
-let gasEstimate = web3.eth.estmateGas({data: bytecode});
-let propertyContract = web3.eth.contract(JSON.parse(abi));
-var propertyContractReturned = propertyContract.new()
+const InteractWithProp = async()=>{
+	var abi = compiledProperty.interface;
+	var bytecode = compiledProperty.bytecode;
+	// var gasEstimate = web3.eth.estmateGas({data: bytecode});
+	// var propContract = web3.eth.contract(JSON.parse(abi));
+	var propContract = new web3.eth.Contract(JSON.parse(abi), '0xaC944BCE7dc5abe3999Ee3057581af26665deD93');
+	// console.log('contract: ', propContract);
+
+
+	const accounts = await web3.eth.getAccounts();
+
+	// propContract.options.address = 
+
+	var result = await propContract.methods.GetTest().call({
+		from: accounts[0]
+	});
+	// console.log('*************************************************************');
+	console.log(result);
+	var temp = await propContract.methods.SetTest(11)
+		.send({from: accounts[0]});
+	// console.log(temp);
+	var result = await propContract.methods.GetTest().call({
+		from: accounts[0]
+	});
+	console.log(result);
+
+}
+
+InteractWithProp();

@@ -4,29 +4,28 @@ const Web3 = require('web3');
 const compiledProperty = require('./build/Property.json');
 const compiledGiftOffer = require('./build/GiftOffer.json');
 
-
-const  provider  = new HDWalletProvider(
+const  provider = new HDWalletProvider(
   'quiz park fancy certain rail quality furnace enhance goat unlock advance figure',
   'https://rinkeby.infura.io/v3/5c73d426f5d94a5086f8c6d0e6ca9530'
 );
 const web3 = new Web3(provider);
 
-const deploy = async () =>{
+const DeployProperty = async () =>{
    const accounts = await web3.eth.getAccounts();
 
    console.log('attemping to deploy', accounts[0]);
 
     const result = await new web3.eth.Contract(JSON.parse(compiledProperty.interface))
-     .deploy({ data: '0x' + compiledProperty.bytecode}) // add 0x bytecode
+     .deploy({ data: '0x' + compiledProperty.bytecode, arguments: [accounts[0]]})
      .send({from: accounts[0]});
     
     console.log('adress= ', result.options.address);
 
-    const res2 = await new web3.eth.Contract(JSON.parse(compiledGiftOffer.interface))
+    /*const res2 = await new web3.eth.Contract(JSON.parse(compiledGiftOffer.interface))
     .deploy({data: '0x' + compiledGiftOffer.bytecode, arguments: [result.options.address, address[1]]})
     .send({from: accounts[0]});
-    console.log('adress= ', res2.options.address);
+    console.log('adress= ', res2.options.address);*/
 
 };
 
-deploy();
+DeployProperty();

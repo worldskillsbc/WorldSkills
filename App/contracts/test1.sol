@@ -7,7 +7,16 @@ contract Property{
  	uint fullSpace; // Всего места
 	uint usefuslSpace; // Полезное место
 	bool is_pledged = false; // Заложено
+	uint test = 0;
 	
+	function GetTest () public constant returns(uint res) {
+		return test;		
+	}
+
+	function SetTest (uint _val) public {
+		test = _val;
+	}
+
 	modifier onlyOwner() {
  		require(msg.sender == owner);
  		_;
