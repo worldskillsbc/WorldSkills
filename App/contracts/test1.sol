@@ -7,15 +7,6 @@ contract Property{
  	uint fullSpace; // Всего места
 	uint usefuslSpace; // Полезное место
 	bool is_pledged = false; // Заложено
-	uint test = 0;
-	
-	function GetTest () public constant returns(uint res) {
-		return test;		
-	}
-
-	function SetTest (uint _val) public {
-		test = _val;
-	}
 
 	modifier onlyOwner() {
  		require(msg.sender == owner);
@@ -43,7 +34,7 @@ contract Property{
  		is_pledged = true;
  	}
  	function OffPledge(PledgeOffer o) public{
- 		require(o.GetState() == Offer.States.EthReutrned);
+ 		require(o.GetState() == Offer.States.EthReutrned || o.GetState() == Offer.States.PropertyTransfered);
  		is_pledged = false;
  	}
 
@@ -56,7 +47,7 @@ contract Property{
  	// Для взаимодействия с предложениями
  	function ChekOffer(Offer o) public{
  	// попробовать require(msg.sender = o);
- 	    if(o.GetCurrOwner() == owner && o.GetState() == Offer.States.TransferAvailable){
+ 	    if(o.GetOldOwner() == owner && o.GetState() == Offer.States.TransferAvailable){
  	        owner = o.GetNewOwner();
  	    }
  	}
@@ -75,7 +66,7 @@ contract Offer{
 		PropertyTransfered
     	}
 	// Состояние предложения
-    	States state = States.Created;
+    States state = States.Created;
 	// Модификаторы
  	modifier onlyCurrOnwer(){
 		require(msg.sender == prop.GetOwner());
@@ -108,7 +99,7 @@ contract Offer{
 	}
 
 	// геттеры
-	function GetCurrOwner() public constant returns(address){ return curr_owner; }
+	function GetOldOwner() public constant returns(address){ return curr_owner; }
 	function GetNewOwner() public constant returns(address){ return new_owner; }
 	function GetState() public constant returns(States){ return state; }
 	
