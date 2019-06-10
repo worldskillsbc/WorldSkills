@@ -4,7 +4,7 @@ const HDWalletProvider =  require('truffle-hdwallet-provider');
 const Web3 = require('web3');
 const compiledProperty = require('../build/Property.json');
 const compiledGiftOffer = require('../build/GiftOffer.json');
-const compiledSellOffer = require('.../build/SellOffer.json');
+const compiledSellOffer = require('../build/SellOffer.json');
 
 const  provider = new HDWalletProvider(
   'quiz park fancy certain rail quality furnace enhance goat unlock advance figure',
@@ -46,5 +46,5 @@ const getPropOwner = async(prop_addr)=>{
 		.call({from: accounts[0]});
 	console.log(res);
 };
-
+TestInteractWithProp(413);
 getPropOwner('0xaC944BCE7dc5abe3999Ee3057581af26665deD93');
