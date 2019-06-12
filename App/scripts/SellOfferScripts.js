@@ -1,4 +1,4 @@
-const fs = require("fs");
+const fs = require('fs');
 const HDWalletProvider =  require('truffle-hdwallet-provider');
 const Web3 = require('web3');
 const compiledSellOffer = require('../build/SellOffer.json');
@@ -98,4 +98,4 @@ const Test = async(o)=>{
 	// console.log('Test(): ', res);
 };
 
-// Test('0xd8a6cd07bcfd499f2ccc1efc00dae4fa31bea4bb');
+Test('0x27d70ff8bf8fa942eddcc52d69287cd1fff0f6a3');

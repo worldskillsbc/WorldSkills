@@ -5,9 +5,8 @@ pragma solidity >=0.4.20 <0.4.25;
 contract Property{
  	address owner; // Владелец
  	uint fullSpace; // Всего места
-	uint usefuslSpace; // Полезное место
+	uint usefulSpace; // Полезное место
 	bool is_pledged = false; // Заложено
-
 	modifier onlyOwner() {
  		require(msg.sender == owner);
  		_;
@@ -21,7 +20,7 @@ contract Property{
  	    return fullSpace;
  	}
     	function GetUsefulSpace() public constant returns(uint){
- 	    return usefuslSpace;
+ 	    return usefulSpace;
  	}
  	function IsPledged() public constant returns(bool){
  	    return is_pledged;
@@ -39,9 +38,11 @@ contract Property{
  	}
 
  	// конструткор
- 	function Property(address _owner)
+ 	function Property(address _owner, uint _fullSpace, uint _usefulSpace)
  	{ 
  		owner = _owner;
+ 		fullSpace = _fullSpace;
+ 		usefulSpace = _usefulSpace;
  	}
 
  	// Для взаимодействия с предложениями
