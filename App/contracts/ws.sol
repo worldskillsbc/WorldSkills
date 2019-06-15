@@ -68,11 +68,7 @@ contract Offer{
     uint256 timeRelevance;
 	// Модификаторы
 	modifier relevant(){
-		if(block.timestamp > timeRelevance)
-		{
-			OfferTimeOut();
-		}
-		else{
+		if(IsActual()){
 			_;
 		}
 	}
