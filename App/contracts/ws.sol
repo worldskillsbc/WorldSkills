@@ -23,7 +23,7 @@ contract Property{
  	    return is_pledged;
  	}
 
-// Для взаимодействия с предложением залога
+	// Для взаимодействия с предложением залога
  	function OnPledge(PledgeOffer o) public{
  		// заменить на проверку того, что вызвал o ???
  		require(o.GetState() == Offer.States.Confirmed);
@@ -60,11 +60,22 @@ contract Offer{
 		Confirmed, 
 		EthReutrned,
 		TransferAvailable,
-		PropertyTransfered
+		PropertyTransfered,
+		TimeOut
     	}
 	// Состояние предложения
     States state = States.Created;
+    uint256 timeRelevance;
 	// Модификаторы
+	modifier relevant(){
+		if(block.timestamp > timeRelevance)
+		{
+			OfferTimeOut();
+		}
+		else{
+			_;
+		}
+	}
  	modifier onlyCurrOnwer(){
 		require(msg.sender == prop.GetOwner());
 		_;
@@ -88,11 +99,12 @@ contract Offer{
 	Property prop;
 	
 	// конструктор
-	constructor(Property _property, address payable newOwner) notPledged(_property) payable public {
+	constructor(Property _property, address payable newOwner, uint timeForOffer) notPledged(_property) payable public {
 		require(msg.sender == _property.GetOwner());
 		curr_owner = _property.GetOwner();
 		new_owner = newOwner;
 		prop = _property;
+		timeRelevance = block.timestamp + timeForOffer;
 	}
 
 	// геттеры
@@ -105,6 +117,7 @@ contract Offer{
 	function CancelOffer() public bothOwners{
 	    state = States.Canceled;
 	}
+    function OfferTimeOut() internal returns(bool);
  }
 
 // Предложение продажи
@@ -114,7 +127,13 @@ contract SellOffer is Offer{
 		require(msg.value == price);
 		_;
 	}
-	
+	function OfferTimeOut() internal returns(bool){
+		if(state == States.Accepted){
+			new_owner.send(address(this).balance);
+		}
+    	state = States.TimeOut;
+    	return true;
+	}
 	// цена
 	uint price; 
 	
@@ -125,18 +144,18 @@ contract SellOffer is Offer{
 	function GetContractBalacne() public view returns(uint){
 	    return address(this).balance;
 	}
-	constructor(Property _property, address payable newOwner, uint _price) public payable Offer(_property, newOwner){
+	constructor(Property _property, address payable newOwner, uint _price, uint timeForOffer) public payable Offer(_property, newOwner, timeForOffer){
         price = _price;
 	}
     
 	// Функции (для перехода по состояниям)
 	// Принять предложение (новый владелец переводит деньги в контракт)
-	function AcceptOffer() public rightPrice payable onlyNewOwner{
+	function AcceptOffer() public relevant rightPrice payable onlyNewOwner{
 	    require(state == States.Created);
 	    state = States.Accepted;
 	}
 	// Подтвердить предложение (старый владелец передаёт недвижимость и забирает деньги)
-	function ConfirmOffer() public onlyCurrOnwer returns(bool){
+	function ConfirmOffer() public relevant onlyCurrOnwer returns(bool){
 	    require(state == States.Accepted);
 	    state = States.TransferAvailable;
 	    prop.ChekOffer(this);
@@ -154,22 +173,32 @@ contract SellOffer is Offer{
 	function CancelOffer() bothOwners public {
 		require(state == States.Created || state == States.Accepted);
 		if(state == States.Accepted){
-    			new_owner.send(address(this).balance);
-    		}
-	    	Offer.CancelOffer();
+			new_owner.send(address(this).balance);
+		}
+    	Offer.CancelOffer();
 	}
 }
 
 // Предложение дарения
 contract GiftOffer is Offer{
 	// конструктор
-	constructor(Property _property, address payable newOwner) public Offer(_property, newOwner) {}
+	constructor(Property _property, address payable newOwner, uint timeForOffer) public Offer(_property, newOwner, timeForOffer) {}
 	
 	// Функции перехода по статусам
-	function AcceptOffer() public onlyNewOwner{
+	function AcceptOffer() public relevant onlyNewOwner returns(bool){
 		require(state == States.Created);
 		state = States.TransferAvailable;
 		prop.ChekOffer(this);
+		if(prop.GetOwner() == new_owner){
+			state = States.PropertyTransfered;
+			return true;
+		}
+		state = States.Created;
+		return false;
+	}
+	function OfferTimeOut() internal returns(bool){
+    	state = States.TimeOut;
+    	return true;
 	}
 
 	function CancelOffer() public bothOwners{
@@ -183,7 +212,15 @@ contract PledgeOffer is Offer{
 	// цена
     uint price;
     uint256 breakPoint;
-    
+
+    modifier earlierThanBreakPoint(){
+    	if(block.timestamp > breakPoint){
+    		OfferTimeOut();
+    	}
+    	else{
+    		_;
+    	}
+    }
     function GetBreakPoint() view public returns(uint256){
         return breakPoint;
     }
@@ -198,9 +235,9 @@ contract PledgeOffer is Offer{
 	    return price;
 	}
     // конструктор
-    constructor(Property _property, address payable newOwner, uint _price, uint offerTime) public Offer(_property, newOwner){
+    constructor(Property _property, address payable newOwner, uint _price, uint pledgeTime, uint timeForOffer) public Offer(_property, newOwner, timeForOffer){
     	price = _price;
-    	breakPoint = block.timestamp + offerTime;
+    	breakPoint = block.timestamp + pledgeTime;
     }
     
     // Функции перехода по статусам
@@ -212,12 +249,20 @@ contract PledgeOffer is Offer{
     	Offer.CancelOffer();
     }
 
-    function AcceptOffer() public rightPrice payable onlyNewOwner{
+    function OfferTimeOut() internal returns(bool){
+		if(state == States.Accepted){
+			new_owner.send(address(this).balance);
+		}
+    	state = States.TimeOut;
+    	return true;
+	}
+
+    function AcceptOffer() public relevant rightPrice payable onlyNewOwner{
     	require(state == States.Created);
     	state = States.Accepted;
     }
 
-    function ConfirmOffer() onlyCurrOnwer public returns(bool){
+    function ConfirmOffer() relevant onlyCurrOnwer public returns(bool){
     	require(state == States.Accepted);
     	require(prop.IsPledged() == false);
     	state = States.Confirmed;
@@ -247,7 +292,7 @@ contract PledgeOffer is Offer{
 	}
     
     // Вернуть эфир
-    function ReutrnEth() public onlyCurrOnwer rightPrice payable{
+    function ReutrnEth() public earlierThanBreakPoint onlyCurrOnwer rightPrice payable{
     	require(state == States.Confirmed);
     	new_owner.transfer(msg.value);
     	state = States.EthReutrned;

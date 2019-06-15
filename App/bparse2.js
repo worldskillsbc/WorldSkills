@@ -3,16 +3,12 @@
 },{}],2:[function(require,module,exports){
 module.exports=[{"propAddr":0,"ownerAddr":0,"fullSpace":0,"usefulSpace":0},{"propAddr":0,"ownerAddr":0,"fullSpace":0,"usefulSpace":0},{"propAddr":256,"ownerAddr":111,"fullSpace":222,"usefulSpace":333},{"propAddr":"sobaka","ownerAddr":0,"fullSpace":0,"usefulSpace":0},{"propAddr":"sobaka","ownerAddr":0,"fullSpace":0,"usefulSpace":0},{"propAddr":"sobaka","ownerAddr":0,"fullSpace":0,"usefulSpace":0},{"propAddr":"sobaka","ownerAddr":0,"fullSpace":0,"usefulSpace":0},{"propAddr":4,"ownerAddr":4,"fullSpace":4,"usefulSpace":4},{"propAddr":44,"ownerAddr":44,"fullSpace":4,"usefulSpace":4}]
 },{}],3:[function(require,module,exports){
-// var go = require('./build/GiftOffer.json');
-// var t = require('./test.json');
-// var t1 = require('./test1.json');
 var r = require('./test1.json');
 
 window.Test = async()=>{
 	for(let i in t1){
 		console.log(t1[i]);
 	}
-	// console.log(JSON.parse(file.interface));
 };
 
 window.addToJSON = async (filePath, propAddr, ownerAddr, fullSpace, usefulSpace) =>{ 
@@ -39,11 +35,10 @@ window.ShowTable = async(tableName, fileName) =>{
 		var td_owner = document.createElement('td');
 		var td_fullSpace = document.createElement('td');
 		var td_usefulSpace = document.createElement('td');
-		// tr.id = file[i].propAddr;
 		td_addr.innerHTML = file[i].propAddr;
 		td_owner.innerHTML = file[i].ownerAddr;
-		td_fullSpace = file[i].fullSpace;
-		td_usefulSpace = file[i].usefulSpace;
+		td_fullSpace.innerHTML = file[i].fullSpace;
+		td_usefulSpace.innerHTML = file[i].usefulSpace;
 		tr.appendChild(td_addr);
 		tr.appendChild(td_owner);
 		tr.appendChild(td_fullSpace);
@@ -51,23 +46,5 @@ window.ShowTable = async(tableName, fileName) =>{
 		table.appendChild(tr);
 	}
 };
-
-
-
-
-// function addToJSON(propAddr, ownerAddr, fullSpace, usefulSpace){
-//   data = require("./txt.json");
-//   data = {
-
-//   }
-//   data.property.push("propAddr" : {555,
-//     "ownerAddr" : 555,
-//     "fullSpace" : 555,
-//     "usefulSpace" : 555});
-//   console.log(data);
-//   fs = require("fs");
-//   fs.writeFileSync("txt.json", txt = JSON.stringify(data), "utf8", ()=> {});
-// }
-
 
 },{"./test1.json":2,"fs":1}]},{},[3]);
