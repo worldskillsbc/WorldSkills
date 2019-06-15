@@ -4,6 +4,7 @@
 module.exports=[{"propAddr":0,"ownerAddr":0,"fullSpace":0,"usefulSpace":0},{"propAddr":0,"ownerAddr":0,"fullSpace":0,"usefulSpace":0},{"propAddr":256,"ownerAddr":111,"fullSpace":222,"usefulSpace":333},{"propAddr":"sobaka","ownerAddr":0,"fullSpace":0,"usefulSpace":0},{"propAddr":"sobaka","ownerAddr":0,"fullSpace":0,"usefulSpace":0},{"propAddr":"sobaka","ownerAddr":0,"fullSpace":0,"usefulSpace":0},{"propAddr":"sobaka","ownerAddr":0,"fullSpace":0,"usefulSpace":0},{"propAddr":4,"ownerAddr":4,"fullSpace":4,"usefulSpace":4},{"propAddr":44,"ownerAddr":44,"fullSpace":4,"usefulSpace":4}]
 },{}],3:[function(require,module,exports){
 var r = require('./test1.json');
+var fs = require("fs"); 
 
 window.Test = async()=>{
 	for(let i in t1){
@@ -19,7 +20,7 @@ window.addToJSON = async (filePath, propAddr, ownerAddr, fullSpace, usefulSpace)
 	"ownerAddr" : ownerAddr, 
 	"fullSpace" : fullSpace, 
 	"usefulSpace" : usefulSpace}); 
-	fs = require("fs"); 
+
 	fs.writeFileSync(filePath, txt = JSON.stringify(data), "utf8", ()=> {}); 
 	console.log(data[3].propAddr); 
 };
@@ -28,7 +29,7 @@ window.addToJSON = async (filePath, propAddr, ownerAddr, fullSpace, usefulSpace)
 
 window.ShowTable = async(tableName, fileName) =>{
 	var table = document.getElementById(tableName);
-	var file = require(fileName);
+	// var file = require(fileName);
 	for (let i in file){
 		var tr = document.createElement('tr');
 		var td_addr = document.createElement('td');

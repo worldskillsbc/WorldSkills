@@ -3,6 +3,7 @@ const Web3 = require('web3');
 const compiledProperty = require('./build/Property.json');
 const compiledGiftOffer = require('./build/GiftOffer.json');
 const compiledSellOffer = require('./build/SellOffer.json');
+const compiledPledgeOffer = require('./build/PledgeOffer.json');
 const fs=require("fs")
 
 
@@ -25,28 +26,39 @@ const DeployProperty = async(ownerAddr, fullSpace, usefuslSpace)=> {
   return result.options.address;
 };
 
-const DeployGiftOffer = async (prop_addr, old_owner, new_owner) =>{
+const DeployGiftOffer = async (prop_addr, old_owner, new_owner, timeForOffer) =>{
   // console.log('DeployGiftOffer()');
   // var accounts = await web3.eth.getAccounts();
   // console.log('accs:', accounts[0], accounts[1]);
   var res = await new web3.eth.Contract(JSON.parse(compiledGiftOffer.interface))
     .deploy({
       data: '0x' + compiledGiftOffer.bytecode,
-      arguments: [prop_addr, new_owner]
+      arguments: [prop_addr, new_owner, timeForOffer]
     })
     .send({from: old_owner});
   console.log('GiftOffer:', res.options.address);
   return res.options.address;
 };
 
-const DeploySellOffer = async (prop_addr, old_owner, new_owner, price) =>{
+const DeploySellOffer = async (prop_addr, old_owner, new_owner, price, timeForOffer) =>{
   var res = await new web3.eth.Contract(JSON.parse(compiledSellOffer.interface))
     .deploy({
       data: '0x' + compiledSellOffer.bytecode,
-      arguments: [prop_addr, new_owner, price]
+      arguments: [prop_addr, new_owner, price, timeForOffer]
     })
     .send({from: old_owner});
   console.log('SellOffer:', res.options.address);
+  return res.options.address;
+};
+
+const DeployPledgeOffer = async (prop_addr, old_owner, new_owner, price, pledgeTime, timeForOffer) =>{
+  var res = await new web3.eth.Contract(JSON.parse(compiledPledgeOffer.interface))
+    .deploy({
+      data: '0x' + compiledPledgeOffer.bytecode,
+      arguments: [prop_addr, new_owner, price, pledgeTime, timeForOffer]
+    })
+    .send({from: old_owner});
+  console.log('PledgeOffer:', res.options.address);
   return res.options.address;
 };
 

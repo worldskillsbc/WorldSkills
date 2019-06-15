@@ -1,8 +1,1 @@
-{
-	"data": {
-		"property": {
-			"123456" : {"owner": "1", "fullSpace": "44", "usefulSpace": "44"},
-			"223456" : {"owner": "2", "fullSpace": "44", "usefulSpace": "44"}
-		}
-	}
-}
+{"data":[{"propAddr":"test","ownerAddr":"owner","fullSpace":"space","usefulSpace":"usefulSpace"}]}
