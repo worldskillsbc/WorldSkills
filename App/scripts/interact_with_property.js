@@ -46,5 +46,22 @@ const getPropOwner = async(prop_addr)=>{
 		.call({from: accounts[0]});
 	console.log(res);
 };
-TestInteractWithProp(413);
-getPropOwner('0xaC944BCE7dc5abe3999Ee3057581af26665deD93');
+
+const getFullSpace = async(offer_addr, sender)=>{
+	var contract = new web3.eth.Contract(JSON.parse(propAbi), offer_addr);
+	var res = await contract.methods.GetFullSpace()
+		.call({from: sender});
+	console.log('getFullSpace res: ', res);
+	return res;
+};
+
+const getUsefulSpace = async(offer_addr, sender)=>{
+	var contract = new web3.eth.Contract(JSON.parse(propAbi), offer_addr);
+	var res = await contract.methods.GetUsefulSpace()
+		.call({from: sender});
+	console.log('getFullSpace res: ', res);
+	return res;
+};
+
+// TestInteractWithProp(413);
+// getPropOwner('0xaC944BCE7dc5abe3999Ee3057581af26665deD93');
