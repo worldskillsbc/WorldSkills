@@ -1,8 +1,8 @@
 <?php
 // ../test.json
-  function PrintTableData()
+  function PrintPropertyData()
   {
-    $filePath = "../data.json";
+    $filePath = "../data/property.json";
     $file = file_get_contents($filePath);
     $fileData = json_decode($file, TRUE);
     unset($file);
@@ -18,9 +18,9 @@
     unset($fileData);
   }
 
-  function PrintTableDataSorted($owner)
+  function PrintPropertyDataSorted($owner)
   {
-    $filePath = "../data.json";
+    $filePath = "../data/property.json";
     $file = file_get_contents($filePath);
     $fileData = json_decode($file, TRUE);
     unset($file);
@@ -37,8 +37,8 @@
     unset($fileData);
   }
 
-  function PutPropInFile($prop_addr, $owner_addr, $full_space, $useful_space){
-    $filePath = "../data.json";
+  function WritePropertyData($prop_addr, $owner_addr, $full_space, $useful_space){
+    $filePath = "../data/property.json";
     $file = file_get_contents($filePath);
     $fileData = json_decode($file, TRUE);
     unset($file);

@@ -8,7 +8,7 @@
 
 <script src='../bdeploy.js'></script>
 <script src='../bparse2.js'></script>
-
+<?php include 'scripts.php';?>
 
  <form action="">
   <p><b>Адрес:</b><br>
@@ -57,7 +57,7 @@
      <td>Полезная площадь</td>
    </tr>
    <?php 
-    PrintTableData("0x305958012D2BC7C4199071e866515DD78ce8141B");
+    PrintPropertyData("0x305958012D2BC7C4199071e866515DD78ce8141B");
     ?>
  </table>
 <script type="text/javascript">
