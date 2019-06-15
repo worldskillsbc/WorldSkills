@@ -43,7 +43,6 @@
         tr.appendChild(td_fullSpace);
         tr.appendChild(td_usefulSpace);
         table.appendChild(tr);
-        
       }
     )
     .catch(() => {console.log('fail!')});
