@@ -76,6 +76,15 @@ contract Offer{
 			_;
 		}
 	}
+
+	function IsActual() public returns(bool){
+		if(block.timestamp > timeRelevance){
+			OfferTimeOut();
+			return false;
+		}
+		return true;
+	}
+
  	modifier onlyCurrOnwer(){
 		require(msg.sender == prop.GetOwner());
 		_;
@@ -127,6 +136,7 @@ contract SellOffer is Offer{
 		require(msg.value == price);
 		_;
 	}
+
 	function OfferTimeOut() internal returns(bool){
 		if(state == States.Accepted){
 			new_owner.send(address(this).balance);
