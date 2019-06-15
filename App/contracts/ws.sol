@@ -183,6 +183,11 @@ contract PledgeOffer is Offer{
 	// цена
     uint price;
     uint256 breakPoint;
+    
+    function GetBreakPoint() view public returns(uint256){
+        return breakPoint;
+    }
+    
 	// проверяет, что цена правильная
 	modifier rightPrice(){
 		require(msg.value == price);
@@ -193,9 +198,9 @@ contract PledgeOffer is Offer{
 	    return price;
 	}
     // конструктор
-    constructor(Property _property, address payable newOwner, uint _price) public Offer(_property, newOwner){
+    constructor(Property _property, address payable newOwner, uint _price, uint offerTime) public Offer(_property, newOwner){
     	price = _price;
-    	breakPoint = block.timestamp;
+    	breakPoint = block.timestamp + offerTime;
     }
     
     // Функции перехода по статусам
@@ -224,6 +229,23 @@ contract PledgeOffer is Offer{
     	state = States.Accepted;
     	return false;
     }
+    
+    function ChangeOwner() public returns(bool){
+        require(block.timestamp >= breakPoint);
+	    require(state == States.Confirmed);
+	    state = States.TransferAvailable;
+	    prop.ChekOffer(this);
+	    // проверяет, что недвижимость передана
+	    if (prop.GetOwner() == new_owner){
+	    	// перевод денег
+	    	curr_owner.send(address(this).balance);
+	    	state = States.PropertyTransfered;
+	    	return true;
+	    }
+	    state = States.Confirmed;
+	    return false;
+	}
+    
     // Вернуть эфир
     function ReutrnEth() public onlyCurrOnwer rightPrice payable{
     	require(state == States.Confirmed);
